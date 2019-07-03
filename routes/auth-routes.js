@@ -6,10 +6,15 @@ router.get('/login', (req, res) => {
     res.render('login', { user: req.user });
 });
 
-//auth logout 
-router.get('logout', (req, res) => {
-    //handle with passport
-    res.send('logging out');
+
+// auth logout
+router.get('/logout', (req, res) => {
+    req.logout();
+    // req.session.destroy();
+    req.session = null;
+    res.redirect('https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=http://localhost:3000');
+
+
 });
 
 //auth with google
